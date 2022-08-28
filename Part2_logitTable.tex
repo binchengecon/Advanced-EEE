@@ -1,0 +1,31 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{HighSchool}&\multicolumn{1}{c}{HighSchoolDegree}&\multicolumn{1}{c}{College}\\
+\hline
+main        &                     &                     &                     \\
+male        &      -0.949\sym{***}&      -0.481\sym{***}&      -0.634\sym{***}\\
+            &     (0.111)         &    (0.0971)         &    (0.0866)         \\
+[1em]
+ability\_math&       0.525\sym{***}&       0.645\sym{***}&       0.795\sym{***}\\
+            &    (0.0807)         &    (0.0750)         &    (0.0743)         \\
+[1em]
+ability\_language&       0.706\sym{***}&       0.900\sym{***}&       0.939\sym{***}\\
+            &    (0.0812)         &    (0.0764)         &    (0.0754)         \\
+[1em]
+parentcollege&       0.958\sym{***}&       1.050\sym{***}&       0.970\sym{***}\\
+            &     (0.190)         &     (0.160)         &     (0.110)         \\
+[1em]
+dist        &                     &                     &     -0.0107         \\
+            &                     &                     &   (0.00839)         \\
+[1em]
+\_cons      &       3.097\sym{***}&       2.217\sym{***}&       1.126\sym{***}\\
+            &     (0.104)         &    (0.0812)         &    (0.0955)         \\
+\hline
+\(N\)       &        5158         &        4669         &        4012         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}

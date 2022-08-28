@@ -1,0 +1,534 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\33678\Desktop\Deeqa_EEE\Advanced econometrics and empirical economics\Part 1\Assisgnment\Solution\Log_BinCHENG.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 Jan 2022, 23:21:22
+{txt}
+{com}. 
+. 
+.         // Question 1
+. 
+.         ***************Period 1******************
+.                 sum male ability_math ability_language parentcollege school degree  if period==1
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}male {c |}{res}      5,158    .4955409    .5000286          0          1
+{txt}ability_math {c |}{res}      5,158    .0443971    .8899971         -2          2
+{txt}ability_la~e {c |}{res}      5,158    .0246219    .9382602         -2          2
+{txt}parentcoll~e {c |}{res}      5,158    .2787902    .4484476          0          1
+{txt}{space 6}school {c |}{res}      5,158    .9051958    .2929727          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}degree {c |}{res}      5,158    .7778209    .4157512          0          1
+{txt}
+{com}.                 eststo sum_period1: quietly estpost summarize male ability_math ability_language parentcollege school degree  if period==1
+{txt}
+{com}.                 
+.                 
+.                 corr male ability_math ability_language parentcollege school degree if period==1
+{txt}(obs=5,158)
+
+             {c |}     male abilit~h abilit~e parent~e   school   degree
+{hline 13}{c +}{hline 54}
+        male {c |}{res}   1.0000
+{txt}ability_math {c |}{res}   0.0124   1.0000
+{txt}ability_la~e {c |}{res}  -0.0764   0.7348   1.0000
+{txt}parentcoll~e {c |}{res}  -0.0126   0.3100   0.3367   1.0000
+      {txt}school {c |}{res}  -0.1319   0.2883   0.3083   0.1510   1.0000
+      {txt}degree {c |}{res}  -0.1372   0.4454   0.4729   0.2439   0.6055   1.0000
+
+{txt}
+{com}.                 eststo corr_period1: quietly estpost corr male ability_math ability_language parentcollege school degree  if period==1,matrix 
+{txt}
+{com}.                 
+.                 reg school male ability_math ability_language parentcollege if period==1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     5,158
+{txt}{hline 13}{c +}{hline 34}   F(4, 5153)      = {res}   174.27
+{txt}       Model {c |} {res} 52.7439438         4   13.185986   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 389.896808     5,153  .075664042   {txt}R-squared       ={res}    0.1192
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1185
+{txt}       Total {c |} {res} 442.640752     5,157  .085832994   {txt}Root MSE        =   {res} .27507
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.0701246{col 30}{space 2} .0077228{col 41}{space 1}   -9.08{col 50}{space 3}0.000{col 58}{space 4}-.0852645{col 71}{space 3}-.0549847
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .0480834{col 30}{space 2} .0064086{col 41}{space 1}    7.50{col 50}{space 3}0.000{col 58}{space 4} .0355199{col 71}{space 3} .0606469
+{txt}ability_language {c |}{col 18}{res}{space 2} .0551945{col 30}{space 2} .0061549{col 41}{space 1}    8.97{col 50}{space 3}0.000{col 58}{space 4} .0431282{col 71}{space 3} .0672608
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .0292121{col 30}{space 2} .0091152{col 41}{space 1}    3.20{col 50}{space 3}0.001{col 58}{space 4} .0113425{col 71}{space 3} .0470818
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} .9283076{col 30}{space 2} .0059492{col 41}{space 1}  156.04{col 50}{space 3}0.000{col 58}{space 4} .9166447{col 71}{space 3} .9399705
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.                 eststo reg_period1_HS: quietly regress  school male ability_math ability_language parentcollege if period==1
+{txt}
+{com}.                 
+.                 reg degree male ability_math ability_language parentcollege if period==1 & school==1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,669
+{txt}{hline 13}{c +}{hline 34}   F(4, 4664)      = {res}   260.56
+{txt}       Model {c |} {res} 103.115473         4  25.7788683   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 461.434537     4,664  .098935364   {txt}R-squared       ={res}    0.1827
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1819
+{txt}       Total {c |} {res} 564.550011     4,668  .120940448   {txt}Root MSE        =   {res} .31454
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          degree{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.0506287{col 30}{space 2} .0092847{col 41}{space 1}   -5.45{col 50}{space 3}0.000{col 58}{space 4} -.068831{col 71}{space 3}-.0324263
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .0781606{col 30}{space 2} .0077882{col 41}{space 1}   10.04{col 50}{space 3}0.000{col 58}{space 4} .0628921{col 71}{space 3}  .093429
+{txt}ability_language {c |}{col 18}{res}{space 2} .0907088{col 30}{space 2} .0074367{col 41}{space 1}   12.20{col 50}{space 3}0.000{col 58}{space 4} .0761293{col 71}{space 3} .1052882
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .0504741{col 30}{space 2} .0106442{col 41}{space 1}    4.74{col 50}{space 3}0.000{col 58}{space 4} .0296064{col 71}{space 3} .0713417
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} .8474298{col 30}{space 2} .0070313{col 41}{space 1}  120.52{col 50}{space 3}0.000{col 58}{space 4} .8336451{col 71}{space 3} .8612145
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.                 eststo reg_period1_De: quietly regress  degree male ability_math ability_language parentcollege if period==1 & school==1
+{txt}
+{com}. 
+.         ***************Period 2****************** add dist
+. 
+.                 sum male ability_math ability_language parentcollege school degree      dist    if period==2
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}male {c |}{res}      5,158    .4955409    .5000286          0          1
+{txt}ability_math {c |}{res}      5,158    .0443971    .8899971         -2          2
+{txt}ability_la~e {c |}{res}      5,158    .0246219    .9382602         -2          2
+{txt}parentcoll~e {c |}{res}      5,158    .2787902    .4484476          0          1
+{txt}{space 6}school {c |}{res}      5,158    .5818147    .4933088          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}degree {c |}{res}      5,158    .7778209    .4157512          0          1
+{txt}{space 8}dist {c |}{res}      5,158    8.519775    5.233976          0         25
+{txt}
+{com}.                 eststo sum_period2: quietly estpost summarize male ability_math ability_language parentcollege school degree dist if period==2
+{txt}
+{com}.                 
+.                 corr male ability_math ability_language parentcollege school degree  dist if period==2
+{txt}(obs=5,158)
+
+             {c |}     male abilit~h abilit~e parent~e   school   degree     dist
+{hline 13}{c +}{hline 63}
+        male {c |}{res}   1.0000
+{txt}ability_math {c |}{res}   0.0124   1.0000
+{txt}ability_la~e {c |}{res}  -0.0764   0.7348   1.0000
+{txt}parentcoll~e {c |}{res}  -0.0126   0.3100   0.3367   1.0000
+      {txt}school {c |}{res}  -0.1550   0.5348   0.5619   0.3316   1.0000
+      {txt}degree {c |}{res}  -0.1372   0.4454   0.4729   0.2439   0.6304   1.0000
+        {txt}dist {c |}{res}   0.0595   0.0158   0.0128  -0.0749  -0.0246  -0.0171   1.0000
+
+{txt}
+{com}.                 eststo corr_period2: quietly estpost correlate  male ability_math ability_language parentcollege school degree dist if period==2,matrix 
+{txt}
+{com}. 
+.                 reg school male ability_math ability_language parentcollege dist if period==2 & degree==1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,012
+{txt}{hline 13}{c +}{hline 34}   F(5, 4006)      = {res}   260.95
+{txt}       Model {c |} {res} 185.793656         5  37.1587312   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 570.440392     4,006  .142396503   {txt}R-squared       ={res}    0.2457
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2447
+{txt}       Total {c |} {res} 756.234048     4,011  .188540027   {txt}Root MSE        =   {res} .37735
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.0966701{col 30}{space 2} .0120665{col 41}{space 1}   -8.01{col 50}{space 3}0.000{col 58}{space 4}-.1203271{col 71}{space 3} -.073013
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .1287359{col 30}{space 2}  .010372{col 41}{space 1}   12.41{col 50}{space 3}0.000{col 58}{space 4} .1084011{col 71}{space 3} .1490708
+{txt}ability_language {c |}{col 18}{res}{space 2} .1284727{col 30}{space 2} .0099104{col 41}{space 1}   12.96{col 50}{space 3}0.000{col 58}{space 4} .1090428{col 71}{space 3} .1479026
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .1091829{col 30}{space 2} .0132487{col 41}{space 1}    8.24{col 50}{space 3}0.000{col 58}{space 4} .0832081{col 71}{space 3} .1351578
+{txt}{space 12}dist {c |}{col 18}{res}{space 2}-.0016354{col 30}{space 2} .0011565{col 41}{space 1}   -1.41{col 50}{space 3}0.157{col 58}{space 4}-.0039028{col 71}{space 3}  .000632
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} .7027906{col 30}{space 2} .0133565{col 41}{space 1}   52.62{col 50}{space 3}0.000{col 58}{space 4} .6766044{col 71}{space 3} .7289768
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.                 eststo reg_period2_Col: quietly regress  school male ability_math ability_language parentcollege dist if period==2 & degree==1 
+{txt}
+{com}. 
+.                 
+.                 **************Latex Table Produce
+.                 
+.                 esttab sum_period1 sum_period2  using "Part1_SumTable.tex" , cells(mean(fmt(6)) ) replace mtitle("t=1""t=2")  nonumbers collabels(none)
+{res}{txt}(output written to {browse  `"Part1_SumTable.tex"'})
+
+{com}.                 esttab reg_period1_HS reg_period1_De reg_period2_Col using "Part1_RegTable.tex", replace mtitle("HighSchool""HighSchoolDegree""College") collabels(none) nonumbers se
+{res}{txt}(output written to {browse  `"Part1_RegTable.tex"'})
+
+{com}.                 esttab corr_period1 using corr_period1.tex, replace unstack not noobs nonote b(3) nostar mtitle("t=1")  nonumbers 
+{res}{txt}(output written to {browse  `"corr_period1.tex"'})
+
+{com}.                 esttab corr_period2 using corr_period2.tex, replace unstack not noobs nonote b(3) nostar mtitle("t=2")  nonumbers 
+{res}{txt}(output written to {browse  `"corr_period2.tex"'})
+
+{com}.                 
+.                 
+.         // Question 2
+.         
+.         // Question 2.c
+.         ***************Period 1******************
+.         
+.         ***************HighSchool Decision********
+.         capture drop ST_HS_Prob
+{txt}
+{com}.         logit school male ability_math ability_language parentcollege if period==1
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1617.1065}  
+Iteration 1:{space 3}log likelihood = {res:-1364.6774}  
+Iteration 2:{space 3}log likelihood = {res:-1298.6537}  
+Iteration 3:{space 3}log likelihood = {res:-1296.9511}  
+Iteration 4:{space 3}log likelihood = {res:-1296.9489}  
+Iteration 5:{space 3}log likelihood = {res:-1296.9489}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     5,158
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}    640.32
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-1296.9489{txt}{col 49}Pseudo R2{col 67}= {res}    0.1980
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      z{col 50}   P>|z|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.9491516{col 30}{space 2} .1106502{col 41}{space 1}   -8.58{col 50}{space 3}0.000{col 58}{space 4}-1.166022{col 71}{space 3}-.7322812
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .5250864{col 30}{space 2} .0807139{col 41}{space 1}    6.51{col 50}{space 3}0.000{col 58}{space 4} .3668901{col 71}{space 3} .6832828
+{txt}ability_language {c |}{col 18}{res}{space 2} .7062783{col 30}{space 2} .0812405{col 41}{space 1}    8.69{col 50}{space 3}0.000{col 58}{space 4} .5470499{col 71}{space 3} .8655067
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .9583825{col 30}{space 2} .1899294{col 41}{space 1}    5.05{col 50}{space 3}0.000{col 58}{space 4} .5861277{col 71}{space 3} 1.330637
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} 3.096661{col 30}{space 2} .1038889{col 41}{space 1}   29.81{col 50}{space 3}0.000{col 58}{space 4} 2.893042{col 71}{space 3} 3.300279
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}.         est sto ST_HS
+{txt}
+{com}.         predict ST_HS_Prob  
+{txt}(option {bf:pr} assumed; Pr(school))
+
+{com}.         
+.         eststo logit_period1_HS: quietly logit  school male ability_math ability_language parentcollege if period==1
+{txt}
+{com}. 
+.         ***************HighSchoolDegree Probability**
+.         capture drop ST_HSDegree_Prob
+{txt}
+{com}.         logit degree male ability_math ability_language parentcollege if period==1 & school==1
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1896.8277}  
+Iteration 1:{space 3}log likelihood = {res:-1513.9666}  
+Iteration 2:{space 3}log likelihood = {res:-1443.1983}  
+Iteration 3:{space 3}log likelihood = {res:-1440.9891}  
+Iteration 4:{space 3}log likelihood = {res:-1440.9862}  
+Iteration 5:{space 3}log likelihood = {res:-1440.9862}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     4,669
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}    911.68
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-1440.9862{txt}{col 49}Pseudo R2{col 67}= {res}    0.2403
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          degree{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      z{col 50}   P>|z|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.4807057{col 30}{space 2} .0971424{col 41}{space 1}   -4.95{col 50}{space 3}0.000{col 58}{space 4}-.6711013{col 71}{space 3}  -.29031
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .6448108{col 30}{space 2} .0749611{col 41}{space 1}    8.60{col 50}{space 3}0.000{col 58}{space 4} .4978896{col 71}{space 3} .7917319
+{txt}ability_language {c |}{col 18}{res}{space 2} .8998475{col 30}{space 2} .0764428{col 41}{space 1}   11.77{col 50}{space 3}0.000{col 58}{space 4} .7500223{col 71}{space 3} 1.049673
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} 1.049599{col 30}{space 2} .1597167{col 41}{space 1}    6.57{col 50}{space 3}0.000{col 58}{space 4} .7365598{col 71}{space 3} 1.362638
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} 2.217168{col 30}{space 2} .0812127{col 41}{space 1}   27.30{col 50}{space 3}0.000{col 58}{space 4} 2.057994{col 71}{space 3} 2.376341
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}.         est sto ST_HSDegree
+{txt}
+{com}.         predict ST_HSDegree_Prob 
+{txt}(option {bf:pr} assumed; Pr(degree))
+
+{com}.                         
+.         eststo logit_period1_HSDe: quietly logit degree male ability_math ability_language parentcollege if period==1 & school==1
+{txt}
+{com}.         ***************Period 2******************
+.         
+.         ***************College Decision********
+.         capture drop ST_Col_Prob
+{txt}
+{com}.         logit school male ability_math ability_language parentcollege dist if period==2 & degree==1
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res: -2264.835}  
+Iteration 1:{space 3}log likelihood = {res:-1752.6334}  
+Iteration 2:{space 3}log likelihood = {res:-1710.6512}  
+Iteration 3:{space 3}log likelihood = {res:-1710.2932}  
+Iteration 4:{space 3}log likelihood = {res: -1710.293}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     4,012
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}   1109.08
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res} -1710.293{txt}{col 49}Pseudo R2{col 67}= {res}    0.2448
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      z{col 50}   P>|z|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2}-.6344893{col 30}{space 2} .0866098{col 41}{space 1}   -7.33{col 50}{space 3}0.000{col 58}{space 4}-.8042414{col 71}{space 3}-.4647373
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2} .7953581{col 30}{space 2}  .074274{col 41}{space 1}   10.71{col 50}{space 3}0.000{col 58}{space 4} .6497838{col 71}{space 3} .9409325
+{txt}ability_language {c |}{col 18}{res}{space 2} .9388417{col 30}{space 2}  .075427{col 41}{space 1}   12.45{col 50}{space 3}0.000{col 58}{space 4} .7910074{col 71}{space 3} 1.086676
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .9697686{col 30}{space 2} .1099471{col 41}{space 1}    8.82{col 50}{space 3}0.000{col 58}{space 4} .7542763{col 71}{space 3} 1.185261
+{txt}{space 12}dist {c |}{col 18}{res}{space 2}-.0107217{col 30}{space 2} .0083939{col 41}{space 1}   -1.28{col 50}{space 3}0.201{col 58}{space 4}-.0271734{col 71}{space 3} .0057301
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} 1.125917{col 30}{space 2} .0955432{col 41}{space 1}   11.78{col 50}{space 3}0.000{col 58}{space 4} .9386556{col 71}{space 3} 1.313178
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}.         est sto ST_Col
+{txt}
+{com}.         predict ST_Col_Prob  
+{txt}(option {bf:pr} assumed; Pr(school))
+
+{com}.         
+.         eststo logit_period2_Col: quietly logit school male ability_math ability_language parentcollege dist if period==2 & degree==1
+{txt}
+{com}.         
+.         esttab logit_period1_HS logit_period1_HSDe logit_period2_Col using "Part2_logitTable.tex", replace mtitle("HighSchool""HighSchoolDegree""College") collabels(none) nonumbers se noomitted 
+{res}{txt}(output written to {browse  `"Part2_logitTable.tex"'})
+
+{com}. 
+.         // Question 2.d 
+.         
+.                 display -_b[parentcollege]/_b[dist]
+{res}90.449378
+{txt}
+{com}.                 
+.         // Question 2.e and f
+. 
+.         
+.         
+.         ***************Benchmark***************
+.         
+.         * College Enrollement Benchmark: presented in probability of going to college
+.         
+.         gen ST_ColEnr_BM =(ST_HS_Prob)*(ST_HSDegree_Prob)*(ST_Col_Prob)
+{txt}
+{com}.         
+.         ***************Counterfactual 1********
+.         *** dist*0=0
+.                 estimates restore ST_Col
+{txt}(results {stata estimates replay ST_Col:ST_Col} are active now)
+
+{com}.                         
+.                 gen ST_Col_Prob_CF1=invlogit(_b[_cons]+_b[male]*male+_b[ability_math]*ability_math+_b[ability_language]*ability_language+_b[parentcollege]*parentcollege +_b[dist]*0)                                           
+{txt}
+{com}.         
+.                 gen ST_ColEnr_CF1 =(ST_HS_Prob)*(ST_HSDegree_Prob)*(ST_Col_Prob_CF1)
+{txt}
+{com}.                                                           
+.         **************Counterfactual 2****
+.                 gen ST_ColEnr_CF2 =(ST_HS_Prob)*(ST_HSDegree_Prob)*(ST_Col_Prob)*0.5
+{txt}
+{com}. 
+.                 ************Latex table output
+.                 
+.                 gen ST_ColEnr_Diff_BM_CF1 = ST_ColEnr_CF1- ST_ColEnr_BM
+{txt}
+{com}.                 gen ST_ColEnr_DiffRatio_BM_CF1 = ( ST_ColEnr_CF1- ST_ColEnr_BM)/ST_ColEnr_BM    
+{txt}
+{com}.                 gen ST_ColEnr_Diff_BM_CF2 = ST_ColEnr_CF2- ST_ColEnr_BM
+{txt}
+{com}.                 gen ST_ColEnr_DiffRatio_BM_CF2 = ( ST_ColEnr_CF2- ST_ColEnr_BM)/ST_ColEnr_BM                    
+{txt}
+{com}. 
+.                 
+.                 eststo sum_ColEnr_period1: quietly estpost summarize ST_ColEnr_BM ST_ColEnr_CF1 ST_ColEnr_CF2 ST_ColEnr_Diff_BM_CF1 ST_ColEnr_Diff_BM_CF2  ST_ColEnr_DiffRatio_BM_CF1 ST_ColEnr_DiffRatio_BM_CF2 if period==1
+{txt}
+{com}. //              eststo sum_ColEnr_period2: quietly estpost summarize ST_ColEnr_BM ST_ColEnr_Diff_BM_CF1 ST_ColEnr_Diff_BM_CF2 if period==2
+.                 esttab sum_ColEnr_period1   using "Part2_SumColEnrTable.tex" , cells(mean(fmt(6)) ) replace mtitle("t=1")  nonumbers collabels(none)
+{res}{txt}(output written to {browse  `"Part2_SumColEnrTable.tex"'})
+
+{com}. 
+.         
+.             // Question 3
+.         
+.             // Question 3.c
+.                 
+.                 gen eulerC = -digamma(1)
+{txt}
+{com}.                 
+.                 estimates restore ST_Col 
+{txt}(results {stata estimates replay ST_Col:ST_Col} are active now)
+
+{com}.                 
+.                 gen v_i12_De= (_b[_cons]+_b[male]*male+_b[ability_math]*ability_math+_b[ability_language]*ability_language +_b[parentcollege]*parentcollege +_b[dist]*dist)
+{txt}
+{com}.                 gen v_i02_De=0
+{txt}
+{com}.                 gen v_i2_NonDe =0
+{txt}
+{com}.                 
+.                 gen Exp_V2_d1_HS= (ST_HSDegree_Prob)*(eulerC+ln(exp(v_i12_De)+exp(v_i02_De)))   +(1-ST_HSDegree_Prob)*(eulerC+ln(exp(v_i2_NonDe)) )
+{txt}
+{com}. 
+.                 
+.         
+.                 constraint 1 Exp_V2_d1_HS=0.95
+{txt}
+{com}.                 logit school male ability_math ability_language parentcollege Exp_V2_d1_HS if period==1, constraint(1) 
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1711.3922}  
+Iteration 1:{space 3}log likelihood = {res:-1325.4506}  
+Iteration 2:{space 3}log likelihood = {res:-1296.4425}  
+Iteration 3:{space 3}log likelihood = {res:-1296.3792}  
+Iteration 4:{space 3}log likelihood = {res:-1296.3791}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     5,158
+{txt}{col 49}Wald chi2({res}4{txt}){col 67}= {res}    104.47
+{txt}Log likelihood = {res}-1296.3791{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+
+{p 0 7}{space 1}{text:( 1)}{space 1} [school]Exp_V2_d1_HS = .95{p_end}
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      z{col 50}   P>|z|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2} -.691289{col 30}{space 2} .1106333{col 41}{space 1}   -6.25{col 50}{space 3}0.000{col 58}{space 4}-.9081263{col 71}{space 3}-.4744517
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2}  .235896{col 30}{space 2} .0802611{col 41}{space 1}    2.94{col 50}{space 3}0.003{col 58}{space 4} .0785872{col 71}{space 3} .3932048
+{txt}ability_language {c |}{col 18}{res}{space 2} .3399407{col 30}{space 2} .0816341{col 41}{space 1}    4.16{col 50}{space 3}0.000{col 58}{space 4} .1799408{col 71}{space 3} .4999406
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .3152227{col 30}{space 2} .1911567{col 41}{space 1}    1.65{col 50}{space 3}0.099{col 58}{space 4}-.0594376{col 71}{space 3} .6898829
+{txt}{space 4}Exp_V2_d1_HS {c |}{col 18}{res}{space 2}      .95{col 30}{txt}  (constrained)
+{space 11}_cons {c |}{col 18}{res}{space 2} 1.439664{col 30}{space 2}  .107669{col 41}{space 1}   13.37{col 50}{space 3}0.000{col 58}{space 4} 1.228637{col 71}{space 3} 1.650692
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}.                 est sto DY_HS
+{txt}
+{com}.                 predict DY_HS_Prob
+{txt}(option {bf:pr} assumed; Pr(school))
+
+{com}.         
+.                 gen DY_ColEnr_BM =(DY_HS_Prob)*(ST_HSDegree_Prob)*(ST_Col_Prob) 
+{txt}
+{com}.                 sum school DY_ColEnr_BM  if period==2
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}school {c |}{res}      5,158    .5818147    .4933088          0          1
+{txt}DY_ColEnr_BM {c |}{res}      5,158    .5825328    .3132693   .0043652   .9942951
+{txt}
+{com}.         
+.         
+.         
+.         
+.                 /// Question 3.e and f
+>                 
+.                 **************Counterfactual 1*********
+.                 est restore ST_Col
+{txt}(results {stata estimates replay ST_Col:ST_Col} are active now)
+
+{com}.                 
+.                 gen v_i12_De_CF1= _b[_cons]+_b[male]*male       +_b[ability_math]*ability_math+_b[ability_language]*ability_language +_b[parentcollege]*parentcollege +_b[dist]*0
+{txt}
+{com}.                 gen v_i02_De_CF1=0
+{txt}
+{com}.                 gen v_i2_NonDe_CF1 =0
+{txt}
+{com}.                 
+.                 gen Exp_V2_d1_HS_CF1= ST_HSDegree_Prob*(eulerC+ln(exp(v_i12_De_CF1)+exp(v_i02_De_CF1))) +(1-ST_HSDegree_Prob)*(eulerC+ln(exp(v_i2_NonDe_CF1)) )
+{txt}
+{com}.                 gen DY_Col_Prob_CF1 = invlogit(v_i12_De_CF1) 
+{txt}
+{com}.                 
+.                 est restore DY_HS
+{txt}(results {stata estimates replay DY_HS:DY_HS} are active now)
+
+{com}.                 
+.                 gen DY_HS_Prob_CF1 = _b[_cons]+_b[male]*male    +_b[ability_math]*ability_math+_b[ability_language]*ability_language +_b[parentcollege]*parentcollege + _b[Exp_V2_d1_HS]*Exp_V2_d1_HS_CF1
+{txt}
+{com}.                 replace DY_HS_Prob_CF1 = invlogit(DY_HS_Prob_CF1)
+{txt}(10,316 real changes made)
+
+{com}.                 
+.                 gen DY_ColEnr_CF1 =(DY_HS_Prob_CF1)*(ST_HSDegree_Prob)*(DY_Col_Prob_CF1) 
+{txt}
+{com}.                 
+.                 //Note that degree obtaining is invariant to distance change so we keep using degree obtaining probability in static case
+.                 
+.                 ************Counterfactual 2************
+.                 
+.                 // Note that degree obtaining is again unaffected
+.                 
+.                 est restore ST_Col
+{txt}(results {stata estimates replay ST_Col:ST_Col} are active now)
+
+{com}. 
+.                 gen v_i12_De_CF2= _b[_cons]+_b[male]*male       +_b[ability_math]*ability_math+_b[ability_language]*ability_language +_b[parentcollege]*parentcollege +_b[dist]*dist
+{txt}
+{com}.                 gen v_i02_De_CF2=0
+{txt}
+{com}.                 gen v_i2_NonDe_CF2 =0           
+{txt}
+{com}.                 gen Exp_V2_d1_HS_CF2= 1/2*ST_HSDegree_Prob*(eulerC+ln(exp(v_i12_De_CF2)+exp(v_i02_De_CF2))) +(1-1/2*ST_HSDegree_Prob)*(eulerC+ln(exp(v_i2_NonDe_CF2)) )
+{txt}
+{com}.                 gen DY_Col_Prob_CF2 = invlogit(v_i12_De_CF2)*1/2                
+{txt}
+{com}.                 
+.                 est restore DY_HS
+{txt}(results {stata estimates replay DY_HS:DY_HS} are active now)
+
+{com}.                 
+.                 gen DY_HS_Prob_CF2 = _b[_cons]+_b[male]*male    +_b[ability_math]*ability_math+_b[ability_language]*ability_language +_b[parentcollege]*parentcollege + _b[Exp_V2_d1_HS]*Exp_V2_d1_HS_CF2
+{txt}
+{com}.                 replace DY_HS_Prob_CF2 = invlogit(DY_HS_Prob_CF2)
+{txt}(10,316 real changes made)
+
+{com}.                 
+.                 gen DY_ColEnr_CF2 =(DY_HS_Prob_CF2)*(ST_HSDegree_Prob)*(DY_Col_Prob_CF2)                
+{txt}
+{com}.                 
+.                 gen DY_ColEnr_Diff_BM_CF1 = DY_ColEnr_CF1 - DY_ColEnr_BM
+{txt}
+{com}.                 gen DY_ColEnr_Diff_BM_CF2 = DY_ColEnr_CF2 - DY_ColEnr_BM
+{txt}
+{com}.                 gen DY_ColEnr_DiffRatio_BM_CF1 = DY_ColEnr_Diff_BM_CF1/DY_ColEnr_BM
+{txt}
+{com}.                 gen DY_ColEnr_DiffRatio_BM_CF2 = DY_ColEnr_Diff_BM_CF2/DY_ColEnr_BM
+{txt}
+{com}. 
+.                 eststo sum_DY_ColEnr: quietly estpost summarize DY_ColEnr_BM DY_ColEnr_CF1 DY_ColEnr_CF2 DY_ColEnr_Diff_BM_CF1 DY_ColEnr_Diff_BM_CF2 DY_ColEnr_DiffRatio_BM_CF1 DY_ColEnr_DiffRatio_BM_CF2 if period==1
+{txt}
+{com}.                 
+.                 esttab sum_DY_ColEnr   using "Part3_SumColEnrTable.tex" , cells(mean(fmt(6)) ) replace mtitle("t=1")  nonumbers collabels(none)
+{res}{txt}(output written to {browse  `"Part3_SumColEnrTable.tex"'})
+
+{com}.                 
+.                 // Question 4
+.                 
+.                 gen v_i2_NonDe_CCP = 0 // If non-degreed, no chance to make any choice, j'=j
+{txt}
+{com}.                 gen v_i02_De_CCP       =0 
+{txt}
+{com}.                 gen Exp_V2_d1_HS_CCP = (ST_HSDegree_Prob)*(eulerC+v_i02_De_CCP-ln(1-ST_Col_Prob))       +(1-ST_HSDegree_Prob)*(eulerC+v_i2_NonDe_CCP-ln(exp(v_i2_NonDe_CCP)/exp(v_i2_NonDe_CCP)) )
+{txt}
+{com}.                 
+.                 constraint 2 Exp_V2_d1_HS_CCP=0.95
+{txt}
+{com}.                 logit school male ability_math ability_language parentcollege Exp_V2_d1_HS_CCP if period==1 , constraint(2)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1711.3922}  
+Iteration 1:{space 3}log likelihood = {res:-1325.4506}  
+Iteration 2:{space 3}log likelihood = {res:-1296.4425}  
+Iteration 3:{space 3}log likelihood = {res:-1296.3792}  
+Iteration 4:{space 3}log likelihood = {res:-1296.3791}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     5,158
+{txt}{col 49}Wald chi2({res}4{txt}){col 67}= {res}    104.47
+{txt}Log likelihood = {res}-1296.3791{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+
+{p 0 7}{space 1}{text:( 1)}{space 1} [school]Exp_V2_d1_HS_CCP = .95{p_end}
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          school{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      z{col 50}   P>|z|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}male {c |}{col 18}{res}{space 2} -.691289{col 30}{space 2} .1106333{col 41}{space 1}   -6.25{col 50}{space 3}0.000{col 58}{space 4}-.9081263{col 71}{space 3}-.4744517
+{txt}{space 4}ability_math {c |}{col 18}{res}{space 2}  .235896{col 30}{space 2} .0802611{col 41}{space 1}    2.94{col 50}{space 3}0.003{col 58}{space 4} .0785872{col 71}{space 3} .3932048
+{txt}ability_language {c |}{col 18}{res}{space 2} .3399407{col 30}{space 2} .0816341{col 41}{space 1}    4.16{col 50}{space 3}0.000{col 58}{space 4} .1799408{col 71}{space 3} .4999406
+{txt}{space 3}parentcollege {c |}{col 18}{res}{space 2} .3152227{col 30}{space 2} .1911567{col 41}{space 1}    1.65{col 50}{space 3}0.099{col 58}{space 4}-.0594376{col 71}{space 3} .6898829
+{txt}Exp_V2_d1_HS_CCP {c |}{col 18}{res}{space 2}      .95{col 30}{txt}  (constrained)
+{space 11}_cons {c |}{col 18}{res}{space 2} 1.439664{col 30}{space 2}  .107669{col 41}{space 1}   13.37{col 50}{space 3}0.000{col 58}{space 4} 1.228637{col 71}{space 3} 1.650692
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}.                 est sto DY_HS_CCP
+{txt}
+{com}.                 
+.                 esttab DY_HS DY_HS_CCP using "Part4_logitTable.tex", replace mtitle("Structural Estimation""CCP Estimation") collabels(none) nonumbers se noomitted 
+{res}{txt}(output written to {browse  `"Part4_logitTable.tex"'})
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\33678\Desktop\Deeqa_EEE\Advanced econometrics and empirical economics\Part 1\Assisgnment\Solution\Log_BinCHENG.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 9 Jan 2022, 23:21:24
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
